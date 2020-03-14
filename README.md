@@ -23,7 +23,7 @@ aws-remote will list all your EC2 instances in the specified account/region, and
 2. Install script packages:
 `pip install -r aws-remote/requirements.txt`
 
-5. Verify script works and its executable: 
+5. Verify script works: 
 `./aws-remote/aws-remote --help`
 
 6. If desired, add alias to bash_profile and then restart terminal:
