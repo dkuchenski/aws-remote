@@ -34,13 +34,13 @@ $ aws-remote --profile my_profile --region us-west-2 port-forward 8080 80 instan
 4. Verify Session Manager plugin is installed:
 `session-manager-plugin`
 
-4. Clone repo and make aws-remote executable: `git clone https://github.com/dkuchenski/aws-remote.git && chmod +x aws-remote/aws-remote`
+4. Clone repo to your computer: `git clone https://github.com/dkuchenski/aws-remote.git`
 
 2. Install script packages:
 `pip install -r aws-remote/requirements.txt`
 
 5. Verify script works: 
-`./aws-remote/aws-remote --help`
+`python3 aws-remote/aws-remote --help`
 
 6. If desired, add alias to bash_profile and then restart terminal:
 ```
