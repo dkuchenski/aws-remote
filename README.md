@@ -11,11 +11,28 @@ aws-remote will list all your EC2 instances in the specified account/region, and
 Examples:
 
 ```
+$ aws-remote --help
+Usage: aws-remote [OPTIONS] COMMAND [ARGS]...
+
+  AWS Remote is a simple, command line tool to view and interact with AWS
+  instances via SSM. Requires the AWS CLI and Session Manager Plugin to be
+  installed locally.
+
+Options:
+  --profile TEXT  Specify AWS profile
+  --region TEXT   Specify AWS region
+  --help          Show this message and exit.
+
+Commands:
+  list          List EC2 instances and SSM management status
+  port-forward  Start SSM port forward to instance id/name
+  session       Start SSM session with instance id/name
+
 $ aws-remote list
-ID                      Name                             AZ            Type          State       SSM          
-i-01234567890987654     instance1-example.domain.com     us-east-1a    r4.xlarge     running     true        
-i-02345678909876543     instance2-example.domain.com     us-east-1b    t3.micro      running     false        
-i-03456789098765432     instance3-example.domain.com     us-east-1c    t3.medium     running     true 
+ID                     AZ            Type         State      SSM     Name         
+i-01234567890987654    us-east-1a    r4.xlarge    running    true    instance1-example.domain.com
+i-02345678909876543    us-east-1b    t3.micro     running    false   instance2-example.domain.com       
+i-03456789098765432    us-east-1c    t3.medium    running    true    instance3-example.domain.com
 
 $ aws-remote --profile my_profile session i-02345678909876543
 
@@ -25,10 +42,10 @@ $ aws-remote --profile my_profile --region us-west-2 port-forward 8080 80 instan
 ```
 
 ### Installation Steps:
-1. Verify Python3.6 or higher is installed:
+1. Verify Python3.6 or later is installed:
 `python --version` or `python3 --version`
 
-3. Verify AWS CLI version 1.16.12 or higher is installed:
+3. Verify AWS CLI version 1.16.12 or later is installed:
 `aws --version `
 
 4. Verify Session Manager plugin is installed:
