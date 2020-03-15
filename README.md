@@ -25,10 +25,10 @@ $ aws-remote --profile my_profile --region us-west-2 port-forward 8080 80 instan
 ```
 
 ### Installation Steps:
-1. Verify Python3.6 or above is installed:
+1. Verify Python3.6 or higher is installed:
 `python --version` or `python3 --version`
 
-3. Verify AWS CLI is installed:
+3. Verify AWS CLI version 1.16.12 or higher is installed:
 `aws --version `
 
 4. Verify Session Manager plugin is installed:
