@@ -75,9 +75,10 @@ def list_instances(ctx):
             instance_az = instance['Placement']['AvailabilityZone']
             instance_state = instance['State']['Name']
             instance_name = ''
-            for tag in instance['Tags']:
-                if tag['Key'] == 'Name':
-                    instance_name = tag['Value']
+            if 'Tags' in instance:
+                for tag in instance['Tags']:
+                    if tag['Key'] == 'Name':
+                        instance_name = tag['Value']
             instance_managed = str(any(instance_id in ssm_instance['InstanceId'] for ssm_instance in ssm_instances)).lower()
             print(even_spaces(instance_id, spaces=22), even_spaces(instance_az),
                   even_spaces(instance_type), even_spaces(instance_state, spaces=10),
