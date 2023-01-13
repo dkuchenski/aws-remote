@@ -67,13 +67,14 @@ def list_instances(ctx):
         ec2_instances = ec2_client.describe_instances()
         ssm_instances = ssm_client.describe_instance_information()['InstanceInformationList']
         print(even_spaces('ID', spaces=22), even_spaces('AZ'), even_spaces('Type'),
-              even_spaces('State', spaces=10), even_spaces('SSM', spaces=8), even_spaces('Name'))
+              even_spaces('State', spaces=10), even_spaces('SSM', spaces=8), even_spaces('IP', spaces=17), even_spaces('Name'))
         for instance in ec2_instances['Reservations']:
             instance = instance['Instances'][0]
             instance_id = instance['InstanceId']
             instance_type = instance['InstanceType']
             instance_az = instance['Placement']['AvailabilityZone']
             instance_state = instance['State']['Name']
+            instance_ip = instance['PrivateIpAddress']
             instance_name = ''
             if 'Tags' in instance:
                 for tag in instance['Tags']:
@@ -82,7 +83,8 @@ def list_instances(ctx):
             instance_managed = str(any(instance_id in ssm_instance['InstanceId'] for ssm_instance in ssm_instances)).lower()
             print(even_spaces(instance_id, spaces=22), even_spaces(instance_az),
                   even_spaces(instance_type), even_spaces(instance_state, spaces=10),
-                  even_spaces(instance_managed, spaces=8), even_spaces(instance_name))
+                  even_spaces(instance_managed, spaces=8), even_spaces(instance_ip, spaces=17),
+                  even_spaces(instance_name))
     except Exception as e:
         print(str(e))
 
