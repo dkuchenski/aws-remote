@@ -57,12 +57,20 @@ $ aws-remote --profile my_profile --region us-west-2 port-forward 8080 80 instan
 
 2. Install script packages:
 `pip install -r aws-remote/requirements.txt`
+  or
+`pip3 install -r aws-remote/requirements.txt`
 
 5. Verify script works: 
 `python3 aws-remote/aws-remote --help`
 
-6. If desired, add alias to bash_profile and then restart terminal:
+6a. BASH: If desired, add alias to bash_profile and then restart terminal:
 ```
 vi ~/.bash_profile
+alias aws-remote='python3 ~/your-script-directory/aws-remote/aws-remote'
+```
+
+6b. ZSH: If desired, add alias to zprofile and then restart terminal:
+```
+vi ~/.zprofile
 alias aws-remote='python3 ~/your-script-directory/aws-remote/aws-remote'
 ```
