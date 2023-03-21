@@ -23,16 +23,28 @@ def find_instance_id(instance_id, aws_profile, aws_region):
     """
     if str(instance_id).startswith('i-'):
         return instance_id
-    else:
+        else:
+        print(f'Finding instance_id for {instance_id}...')
         try:
-            print(f'Finding instance_id for {instance_id}...')
             boto_session = boto3.Session(profile_name=aws_profile, region_name=aws_region)
             ec2_client = boto_session.client('ec2')
-            instance_filter = [{
+            instance_filter_name = [{
                 'Name': 'tag:Name',
                 'Values': [instance_id]
             }]
-            ec2_instance = ec2_client.describe_instances(Filters=instance_filter)
+            ec2_instance = ec2_client.describe_instances(Filters=instance_filter_name)
+            instance_id = ec2_instance['Reservations'][0]['Instances'][0]['InstanceId']
+            print(f'Found {instance_id}')
+        except Exception:
+            pass
+        try:
+            boto_session = boto3.Session(profile_name=aws_profile, region_name=aws_region)
+            ec2_client = boto_session.client('ec2')
+            instance_filter_privateip = [{
+                'Name': 'private-ip-address',
+                'Values': [instance_id]
+            }]
+            ec2_instance = ec2_client.describe_instances(Filters=instance_filter_privateip)
             instance_id = ec2_instance['Reservations'][0]['Instances'][0]['InstanceId']
             print(f'Found {instance_id}')
         except Exception as e:
