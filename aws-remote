@@ -35,6 +35,7 @@ def find_instance_id(instance_id, aws_profile, aws_region):
             ec2_instance = ec2_client.describe_instances(Filters=instance_filter_name)
             instance_id = ec2_instance['Reservations'][0]['Instances'][0]['InstanceId']
             print(f'Found {instance_id}')
+            return instance_id
         except Exception:
             pass
         try:
